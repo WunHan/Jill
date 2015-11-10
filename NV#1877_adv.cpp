@@ -9,7 +9,9 @@ when        who       what, where, why
                       1. Add band_lut structure for easier maintainance
                       2. Add input_check mechanism
                       3. Add quit option
-                       
+11-10-15   Victor     Fix BUGs
+                      1. Correct the init value of is_valid_answer
+                      2. Correct the calculation for the element number of band_lut
 ===========================================================================*/
 
 #include <stdio.h>
@@ -34,7 +36,7 @@ typedef  unsigned long long uint64;
 
 typedef struct
 {
-  char name[32];
+  char name[STRING_LEN];
   uint64 value;
 }band_info_type;
 
@@ -65,11 +67,11 @@ int main(void)
   int quit = 0;
 
 
-  for(i=0; i<sizeof(band_lut); i++)
+  for(i=0; i<(sizeof(band_lut)/sizeof(band_lut[0])); i++)
   {
     do // input check
     {
-      is_valid_answer =1;
+      is_valid_answer = 0;
       printf("[%-14s]  Supported? ",band_lut[i].name);
 
       fgets(s, STRING_LEN, stdin);
