@@ -12,25 +12,37 @@ when        who       what, where, why
 #include <stdio.h>
 #include <stdlib.h>
 
+int addnumbers( int num)
+{			
+  int result = 0;  
+  if (num>0)
+  {
+  	result = addnumbers(num/10)+num%10;
+  	if (result>9)
+  	result = result/10 + result%10;
+    return result;
+  }  	   
+  else
+    return 0;
+}
+
 int main()
 {
-	//int input = 126;
-	
-	int input;
-	printf("Please enter a non negative number: ");
+  //int input = 13579;
+  int input;
+  printf("Please enter a non negative number: ");
+  scanf("%d", &input);
+  while(input<0)
+  {
+	printf("You enter a unavaliable value.\n");
+	printf("Please enter a non negative number again:");
 	scanf("%d", &input);
-	while(input<0)
-	{
-		printf("You enter a unavaliable value.\n");
-		printf("Please enter a non negative number again:");
-		scanf("%d", &input);
-	}
-	
-	int output = input%9;	
-	if (output==0 && input!=0)
-	output+=9;
-
-	printf("The magic number of %d is %d\n", input, output);	
+  }
+  
+  int output;
+  output = addnumbers(input);
+  
+  printf("The magic number of %d is %d\n", input, output);
 }
 
 /*

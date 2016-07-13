@@ -1,3 +1,13 @@
+/*===============================================================================
+                        EDIT HISTORY FOR MODULE
+  This section contains comments describing changes made to the module.
+  Notice that changes are listed in reverse chronological order.
+when        who       what, where, why
+--------   ------     ----------------------------------------------------------
+05-07-16   Jill       Init version
+                      Distinguish the value whether is power by 2 or not
+===============================================================================*/
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
@@ -19,6 +29,7 @@ int distinguish(int value)
 	}
 	printf("\n");
 	-----------------------*/
+	/*-----------------------
 	while(value!=1)
     {
 		flag=value%2;
@@ -28,6 +39,12 @@ int distinguish(int value)
 		value/=2;
 	}
 	return 1;
+	------------------------*/
+	flag=value&(value-1);
+	if (flag==0)
+	return 1;
+	else
+	return 0;
 }
 
 int main(void)
@@ -52,3 +69,10 @@ int main(void)
 	else 
 	printf("%d is not power number by 2", input);	   
 }
+
+/*
+Please enter a positive number: 8
+8 is power number by 2
+Please enter a positive number: 25
+25 is not power number by 2
+*/
